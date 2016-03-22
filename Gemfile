@@ -10,6 +10,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'figaro'
 gem 'pg'
 gem 'pry'
+gem 'responders'
+
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
