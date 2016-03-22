@@ -3,11 +3,12 @@
 # describe "ideas" do
 #   describe "GET index" do
 #     it "does a thing" do
-#       pending
+#       create_list(:idea, 3)
 #       # What to test here? It's just a GET to '/'.
 #       # Spec says test all controller actions?
 #       @controller = IdeasController.new
-#       post :index
+#       get :index
+#       binding.pry
 #     end
 #   end
 # end
