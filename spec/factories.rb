@@ -11,8 +11,8 @@ FactoryGirl.define do
   end
 
   sequence :body do |n|
-    "Body#{n} Body#{n} Body#{n} Body#{n} Body#{n} Body#{n} Body#{n} Body#{n} "\
-    "Body#{n} Body#{n} Body#{n} Body#{n} Body#{n} Body#{n} Body#{n} Body#{n}"
+    "Body#{n} Body#{n} Body#{n} Body#{n} Body#{n} Body#{n} "\
+    "Body#{n} Body#{n} Body#{n} Body#{n} Body#{n} Body#{n}"
   end
 
   sequence :quality, [0, 1, 2].cycle do |n|
