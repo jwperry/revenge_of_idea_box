@@ -4,7 +4,10 @@ $(document).ready(function() {
 
 function displayIdea(idea) {
   var body = truncate(idea.body);
-  return $('<div class="idea"><h4>Title: ' + idea.title + '</h4><h4>Quality: ' + idea.quality + '</h4><h4>Date: '+ idea.created_at + '</h4><h5>' + body + '</h5></div><br />');
+  var imageUrl = "<%= asset_path('delete.png') %>"
+  return $('<div class="idea" data-idea-id="' + idea.id + '"><h4>Title: ' + idea.title + '</h4><h4>Quality: ' +
+    idea.quality + '</h4><h4>Date: '+ idea.created_at + '</h4><h5>' + body +
+    '</h5><input class="delete-image" type="image" src="' + imageUrl + '"></div>');
 };
 
 function appendIdeas(ideas, target) {

@@ -4,7 +4,7 @@ $(document).ready(function() {
                        body: $("#new-body-field").val() }
    };
 
-   $.post("/ideas", idea);
-   createIdeaIndex();
+   $.post("/ideas", idea).done(createIdeaIndex);
+   
   });
 });
