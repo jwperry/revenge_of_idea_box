@@ -4,7 +4,7 @@ $(document).ready(function() {
    $.ajax({
     method: "PATCH",
     url: "/ideas/" + $(this).parent().data("idea-id"),
-    data: {ratingChange: -1}
+    data: { idea: { ratingChange: -1 } }
    }).done(createIdeaIndex);
    
   });
@@ -14,7 +14,8 @@ $(document).ready(function() {
    $.ajax({
     method: "PATCH",
     url: "/ideas/" + $(this).parent().data("idea-id"),
-    data: {ratingChange: 1}
+    data: { idea: { ratingChange: 1 } }
+
    }).done(createIdeaIndex);
    
   });

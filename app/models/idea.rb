@@ -5,10 +5,20 @@ class Idea < ActiveRecord::Base
 
   enum quality: %w(Swill Plausible Genius)
 
-  def update_quality(change)
-    new_quality = self[:quality] + change.to_i
+  def update_idea(updates)
+    update_quality(updates) if updates[:ratingChange]
+    update_title_and_body(updates) if updates[:title] && updates[:body]
+  end
+
+  def update_quality(updates)
+    new_quality = self[:quality] + updates[:ratingChange].to_i
     new_quality = 2 if new_quality > 2
     new_quality = 0 if new_quality < 0
     self.update_attribute(:quality, new_quality)
+  end
+
+  def update_title_and_body(updates)
+    self.update_attribute(:title, updates[:title])
+    self.update_attribute(:body, updates[:body])
   end
 end

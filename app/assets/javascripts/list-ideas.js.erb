@@ -4,14 +4,19 @@ $(document).ready(function() {
 
 function displayIdea(idea) {
   var body = truncate(idea.body);
-  var deleteImg = "<%= asset_path('delete.png') %>";
   var thumbsDown = "<%= asset_path('thumbs_down.png') %>";
   var thumbsUp = "<%= asset_path('thumbs_up.png') %>";
-  return $('<div class="idea" data-idea-id="' + idea.id + '"><h4>Title: ' + idea.title + '</h4><h4>Quality: ' +
-    idea.quality + '</h4><h4>Date: '+ idea.created_at + '</h4><h5>' + body + '</h5>' +
-    '<input class="thumbs-down-image" type="image" src="' + thumbsDown + '">' +
-    '<input class="thumbs-up-image" type="image" src="' + thumbsUp + '">' +
-    '<input class="delete-image" type="image" src="' + deleteImg + '">' +
+  var editImg = "<%= asset_path('edit.png') %>";
+  var deleteImg = "<%= asset_path('delete.png') %>";
+  return $('<div class="idea" data-idea-id="' + idea.id + '" ' +
+    'data-idea-title="' + idea.title + '" ' +
+    'data-idea-body="' + idea.body + '">' +
+    '<h4 class="title-display">' + idea.title + '</h4><h4>Quality: ' +
+    idea.quality + '</h4><h4>'+ idea.created_at + '</h4><h5 class="body-display">' + body + '</h5>' +
+    '<input class="thumbs-down-image idea-button" type="image" src="' + thumbsDown + '">' +
+    '<input class="thumbs-up-image idea-button" type="image" src="' + thumbsUp + '">' +
+    '<input class="edit-image idea-button" type="image" src="' + editImg + '">' +
+    '<input class="delete-image idea-button" type="image" src="' + deleteImg + '">' +
     '</div>');
 };
 

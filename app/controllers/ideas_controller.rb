@@ -21,8 +21,7 @@ class IdeasController < ApplicationController
 
   def update
     idea = Idea.find(params[:id])
-    change = params[:ratingChange]
-    idea.update_quality(change)
+    idea.update_idea(params[:idea]) if params[:idea]
     render nothing: true
   end
 
