@@ -17,7 +17,7 @@ function displayIdea(idea) {
     '<input class="thumbs-up-image idea-button" type="image" src="' + thumbsUp + '">' +
     '<input class="edit-image idea-button" type="image" src="' + editImg + '">' +
     '<input class="delete-image idea-button" type="image" src="' + deleteImg + '">' +
-    '</div>');
+    '</div><br /><br />');
 };
 
 function appendIdeas(ideas, target) {
@@ -25,6 +25,7 @@ function appendIdeas(ideas, target) {
 };
 
 function createIdeaIndex(target) {
+  $('#search-field').val("");
   var target = $('.ideas').empty();
   return $.getJSON('/ideas').then(function (all_ideas) {
     all_ideas.ideas.sort(chronSort);
