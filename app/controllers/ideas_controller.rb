@@ -16,6 +16,14 @@ class IdeasController < ApplicationController
   def destroy
     idea = Idea.find(params[:id])
     idea.destroy
+    render nothing: true
+  end
+
+  def update
+    idea = Idea.find(params[:id])
+    change = params[:ratingChange]
+    idea.update_quality(change)
+    render nothing: true
   end
 
   private

@@ -1,6 +1,16 @@
 @import "colors";
 
 .delete-image {
+  width: 35px;
+  cursor: pointer;
+}
+
+.thumbs-down-image {
+  width: 47px;
+  cursor: pointer;
+}
+
+.thumbs-up-image {
   width: 40px;
   cursor: pointer;
 }

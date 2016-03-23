@@ -4,10 +4,15 @@ $(document).ready(function() {
 
 function displayIdea(idea) {
   var body = truncate(idea.body);
-  var imageUrl = "<%= asset_path('delete.png') %>"
+  var deleteImg = "<%= asset_path('delete.png') %>";
+  var thumbsDown = "<%= asset_path('thumbs_down.png') %>";
+  var thumbsUp = "<%= asset_path('thumbs_up.png') %>";
   return $('<div class="idea" data-idea-id="' + idea.id + '"><h4>Title: ' + idea.title + '</h4><h4>Quality: ' +
-    idea.quality + '</h4><h4>Date: '+ idea.created_at + '</h4><h5>' + body +
-    '</h5><input class="delete-image" type="image" src="' + imageUrl + '"></div>');
+    idea.quality + '</h4><h4>Date: '+ idea.created_at + '</h4><h5>' + body + '</h5>' +
+    '<input class="thumbs-down-image" type="image" src="' + thumbsDown + '">' +
+    '<input class="thumbs-up-image" type="image" src="' + thumbsUp + '">' +
+    '<input class="delete-image" type="image" src="' + deleteImg + '">' +
+    '</div>');
 };
 
 function appendIdeas(ideas, target) {
@@ -15,7 +20,7 @@ function appendIdeas(ideas, target) {
 };
 
 function createIdeaIndex(target) {
-  var target = $('.ideas');
+  var target = $('.ideas').empty();
   return $.getJSON('/ideas').then(function (all_ideas) {
     all_ideas.ideas.sort(chronSort);
     appendIdeas(all_ideas.ideas, target);
