@@ -44,4 +44,45 @@ RSpec.describe Idea, type: :model do
     expect(idea2.quality).to eq("Plausible")
     expect(idea3.quality).to eq("Genius")
   end
+
+  it "updates quality" do
+    idea = create(:idea, quality: 0)
+    updates = { ratingChange: "1" }
+    expect(idea.quality).to eq("Swill")
+    idea.update_quality(updates)
+    expect(idea.quality).to eq("Plausible")
+  end
+
+  it "doesn't allow quality > 2" do
+    idea = create(:idea, quality: 2)
+    updates = { ratingChange: "1" }
+    expect(idea.quality).to eq("Genius")
+    idea.update_quality(updates)
+    expect(idea.quality).to eq("Genius")
+  end
+
+  it "doesn't allow quality < 0" do
+    idea = create(:idea, quality: 0)
+    updates = { ratingChange: "-1" }
+    expect(idea.quality).to eq("Swill")
+    idea.update_quality(updates)
+    expect(idea.quality).to eq("Swill")
+  end
+
+  it "updates title and body" do
+    idea = create(:idea)
+    updates = { title: "new_title", body: "new_body" }
+    idea.update_title_and_body(updates)
+    expect(idea.title).to eq(updates[:title])
+    expect(idea.body).to eq(updates[:body])
+  end
+
+  it "fully updates idea" do
+    idea = create(:idea, quality: 2)
+    updates = { title: "new_title", body: "new_body", ratingChange: "-1" }
+    idea.update_idea(updates)
+    expect(idea.quality).to eq("Plausible")
+    expect(idea.title).to eq(updates[:title])
+    expect(idea.body).to eq(updates[:body])
+  end
 end
