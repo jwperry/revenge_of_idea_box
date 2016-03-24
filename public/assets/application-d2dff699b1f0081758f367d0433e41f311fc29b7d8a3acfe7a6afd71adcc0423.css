@@ -8807,36 +8807,94 @@ button.close {
   }
 }
 /* line 3, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+.home-title {
+  font-size: 6.0em;
+  color: white;
+  -webkit-text-stroke: 2px black;
+  font-weight: bold;
+}
+
+/* line 10, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+.labels {
+  font-size: 2.0em;
+  color: white;
+  -webkit-text-stroke: 1.0px black;
+}
+
+/* line 16, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+.labels-md {
+  font-size: 3.0em;
+  color: white;
+  -webkit-text-stroke: 1.0px black;
+}
+
+/* line 22, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+.labels-lg {
+  font-size: 5.0em;
+  color: white;
+  -webkit-text-stroke: 2.0px black;
+  font-weight: bold;
+}
+
+/* line 29, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
 .delete-image {
   width: 35px;
   cursor: pointer;
 }
 
-/* line 8, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+/* line 34, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
 .edit-image {
   width: 40px;
   cursor: pointer;
 }
 
-/* line 13, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+/* line 39, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
 .thumbs-down-image {
   width: 47px;
   cursor: pointer;
 }
 
-/* line 18, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+/* line 44, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
 .thumbs-up-image {
   width: 40px;
   cursor: pointer;
 }
 
-/* line 23, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+/* line 49, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
 .idea {
+  background-color: white;
   width: 40%;
   border: 3px solid black;
 }
 
-/* line 28, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+/* line 55, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+.tags {
+  width: 40%;
+  font-weight: bold;
+}
+
+/* line 60, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
 .tag {
   cursor: pointer;
+  font-size: 2.0em;
+  color: white;
+  -webkit-text-stroke: 1.0px black;
+}
+
+/* line 67, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+.tag-separator {
+  font-size: 2.0em;
+  color: white;
+  -webkit-text-stroke: 1.0px black;
+  font-weight: bold;
+}
+
+/* line 75, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+body {
+  background: url(/assets/background-ccd876fcdec3a94547b15766c6fdc149969dde0b8e102c6ddbf072dc63c9aee9.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
 }
