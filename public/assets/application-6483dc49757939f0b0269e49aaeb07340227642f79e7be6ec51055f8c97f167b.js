@@ -11675,9 +11675,9 @@ function truncate(body) {
 };
 
 function chronSort(x, y) {
-  x.idea.created_at = new Date(x.created_at);
-  y.idea.created_at = new Date(y.created_at);
-  return (y.created_at - x.created_at);
+  var a = new Date(x.idea.created_at);
+  var b = new Date(y.idea.created_at);
+  return (b - a);
 };
 
 function openIdeaDiv(ideaObj){
@@ -11690,7 +11690,7 @@ function displayProperties(ideaObj){
   var body = truncate(ideaObj.idea.body);
   return '<h3 class="title-display">' + ideaObj.idea.title + '</h3><h4>Quality: ' +
     ideaObj.idea.quality + '</h4><h5>'+ ideaObj.idea.created_at + '</h5><h5 class="body-display">' +
-    body + '</h5>' + '<h5>' + displayTags(ideaObj) + '</h5>'
+    body + '</h5>' + '<h5 class="tags-display">' + displayTags(ideaObj) + '</h5>'
   };
 
 function displayButtons(){
@@ -11762,8 +11762,8 @@ $(document).ready(function() {
 
 function showOnlyMatches(ideas, term) {
   ideas.each(function() {
-    var  body = $(this).data('idea-body').toLowerCase();
-    var  title = $(this).data('idea-title').toLowerCase();
+    var body = $(this).data('idea-body').toLowerCase();
+    var title = $(this).data('idea-title').toLowerCase();
     if (body.indexOf(term) === -1 && title.indexOf(term) === -1){
       $(this).hide();
     }
@@ -11777,6 +11777,37 @@ function showAllIdeas(ideas) {
   ideas.each(function() {
     $(this).show();
   });
+};
+$(document).ready(function() {
+  $('.tag').on("click", function() {
+    var ideas = $('.idea');
+    var term = this.innerHTML;
+    showOnlyTagMatches(ideas, term);
+  });
+  
+  $('.clear-tags').on("click", function() {
+    var ideas = $('.idea');
+    ideas.each(function() {
+      $(this).show();
+    });
+  });
+});
+
+function showOnlyTagMatches(ideas, term) {
+  ideas.each(function() {
+    filterOnTag.call(this, term)
+  });
+};
+
+
+function filterOnTag(term) {
+  var tags = $(this).find('.tags-display')[0].innerHTML
+  if (tags.indexOf(term) === -1){
+    $(this).hide();
+  }
+  else {
+    $(this).show();
+  }
 };
 /* ========================================================================
  * Bootstrap: affix.js v3.3.6
