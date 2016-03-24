@@ -11644,22 +11644,9 @@ $(document).ready(function() {
 });
 
 function displayIdea(idea) {
-  var body = truncate(idea.body);
-  var thumbsDown = "/assets/thumbs_down-164bbcc683be2528179845e84e1f9c9fb0405f0d2cea5b4cebf3cfa080018c6c.png";
-  var thumbsUp = "/assets/thumbs_up-41e6886c1e01ec41eb4ecc32fc910f97bd76e23984c5de282d4a9e36f1e353b5.png";
-  var editImg = "/assets/edit-c6e144338ae9aa4b3ecb13a8dcca8607a16d04b6d98f56da05a252a060608990.png";
-  var deleteImg = "/assets/delete-9747f485f6feeb5d70e663db380bef85c70157b1af893263255af66bd6712acf.png";
-  return $('<div class="idea" data-idea-id="' + idea.id + '" ' +
-    'data-idea-title="' + idea.title + '" ' +
-    'data-idea-body="' + idea.body + '">' +
-    '<h4 class="title-display">' + idea.title + '</h4><h4>Quality: ' +
-    idea.quality + '</h4><h4>'+ idea.created_at + '</h4><h5 class="body-display">' + body + '</h5>' +
-    '<input class="thumbs-down-image idea-button" type="image" src="' + thumbsDown + '">' +
-    '<input class="thumbs-up-image idea-button" type="image" src="' + thumbsUp + '">' +
-    '<input class="edit-image idea-button" type="image" src="' + editImg + '">' +
-    '<input class="delete-image idea-button" type="image" src="' + deleteImg + '">' +
-    '</div><br /><br />');
+  return $(openIdeaDiv(idea) + displayProperties(idea) + displayButtons() + '</div><br /><br />');
 };
+
 
 function appendIdeas(ideas, target) {
   $(target).append(ideas.map(displayIdea));
@@ -11691,6 +11678,29 @@ function chronSort(x, y) {
   x.created_at = new Date(x.created_at);
   y.created_at = new Date(y.created_at);
   return (y.created_at - x.created_at);
+};
+
+function openIdeaDiv(idea){
+  return '<div class="idea" data-idea-id="' + idea.id + '" ' +
+    'data-idea-title="' + idea.title + '" ' +
+    'data-idea-body="' + idea.body + '">'
+};
+
+function displayProperties(idea){
+  var body = truncate(idea.body);
+  return '<h3 class="title-display">' + idea.title + '</h3><h4>Quality: ' +
+    idea.quality + '</h4><h5>'+ idea.created_at + '</h5><h5 class="body-display">' + body + '</h5>'
+  };
+
+function displayButtons(){
+  var thumbsDown = "/assets/thumbs_down-164bbcc683be2528179845e84e1f9c9fb0405f0d2cea5b4cebf3cfa080018c6c.png";
+  var thumbsUp = "/assets/thumbs_up-41e6886c1e01ec41eb4ecc32fc910f97bd76e23984c5de282d4a9e36f1e353b5.png";
+  var editImg = "/assets/edit-c6e144338ae9aa4b3ecb13a8dcca8607a16d04b6d98f56da05a252a060608990.png";
+  var deleteImg = "/assets/delete-9747f485f6feeb5d70e663db380bef85c70157b1af893263255af66bd6712acf.png";
+  return '<input class="thumbs-down-image idea-button" type="image" src="' + thumbsDown + '">' +
+  '<input class="thumbs-up-image idea-button" type="image" src="' + thumbsUp + '">' +
+  '<input class="edit-image idea-button" type="image" src="' + editImg + '">' +
+  '<input class="delete-image idea-button" type="image" src="' + deleteImg + '">'
 };
 $(document).ready(function() {
   $("#new-idea-submit").on("click", function() {

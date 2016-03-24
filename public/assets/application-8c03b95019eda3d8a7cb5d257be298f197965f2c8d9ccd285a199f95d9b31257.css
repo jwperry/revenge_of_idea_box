@@ -8829,3 +8829,9 @@ button.close {
   width: 40px;
   cursor: pointer;
 }
+
+/* line 23, /Users/Jet/turing/4module/revenge_of_idea_box/app/assets/stylesheets/_custom.scss */
+.idea {
+  width: 40%;
+  border: 3px solid black;
+}
