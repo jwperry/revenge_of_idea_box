@@ -6,11 +6,9 @@ class IdeasController < ApplicationController
     respond_with all_ideas
   end
 
-  def new
-  end
-
   def create
     Idea.create(idea_params)
+    render nothing: true
   end
 
   def destroy

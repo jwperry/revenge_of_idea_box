@@ -6,8 +6,9 @@ RSpec.describe "UserCanViewIndex", type: :feature, js: true do
       idea1, idea2 = create_list(:idea, 2)
       visit '/'
       expect(current_path).to eq('/')
-      sleep(3)
-      expect(page).to have_content("Ideas")
+      sleep(1)
+      expect(page).to have_content("Idea Box")
+      expect(page).to have_content("All Ideas")
       expect(page).to have_content(idea1.title)
       expect(page).to have_content(idea1.body)
       expect(page).to have_content(idea1.quality)
