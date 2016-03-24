@@ -2,8 +2,8 @@ $(document).ready(function() {
   createIdeaIndex();
 });
 
-function displayIdea(idea) {
-  return $(openIdeaDiv(idea) + displayProperties(idea) + displayButtons() + '</div><br /><br />');
+function displayIdea(ideaObj) {
+  return $(openIdeaDiv(ideaObj) + displayProperties(ideaObj) + displayButtons() + '</div><br /><br />');
 };
 
 
@@ -34,21 +34,22 @@ function truncate(body) {
 };
 
 function chronSort(x, y) {
-  x.created_at = new Date(x.created_at);
-  y.created_at = new Date(y.created_at);
-  return (y.created_at - x.created_at);
+  var a = new Date(x.idea.created_at);
+  var b = new Date(y.idea.created_at);
+  return (b - a);
 };
 
-function openIdeaDiv(idea){
-  return '<div class="idea" data-idea-id="' + idea.id + '" ' +
-    'data-idea-title="' + idea.title + '" ' +
-    'data-idea-body="' + idea.body + '">'
+function openIdeaDiv(ideaObj){
+  return '<div class="idea" data-idea-id="' + ideaObj.idea.id + '" ' +
+    'data-idea-title="' + ideaObj.idea.title + '" ' +
+    'data-idea-body="' + ideaObj.idea.body + '">'
 };
 
-function displayProperties(idea){
-  var body = truncate(idea.body);
-  return '<h3 class="title-display">' + idea.title + '</h3><h4>Quality: ' +
-    idea.quality + '</h4><h5>'+ idea.created_at + '</h5><h5 class="body-display">' + body + '</h5>'
+function displayProperties(ideaObj){
+  var body = truncate(ideaObj.idea.body);
+  return '<h3 class="title-display">' + ideaObj.idea.title + '</h3><h4>Quality: ' +
+    ideaObj.idea.quality + '</h4><h5>'+ ideaObj.idea.created_at + '</h5><h5 class="body-display">' +
+    body + '</h5>' + '<h5 class="tags-display">' + displayTags(ideaObj) + '</h5>'
   };
 
 function displayButtons(){
@@ -60,4 +61,12 @@ function displayButtons(){
   '<input class="thumbs-up-image idea-button" type="image" src="' + thumbsUp + '">' +
   '<input class="edit-image idea-button" type="image" src="' + editImg + '">' +
   '<input class="delete-image idea-button" type="image" src="' + deleteImg + '">'
+};
+
+function displayTags(ideaObj){
+  var allTags = ""
+  $(ideaObj.tags).each(function() {
+    allTags = allTags + $(this)[0].name + ' '
+  })
+  return allTags;
 };

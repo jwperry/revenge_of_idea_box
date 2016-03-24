@@ -11587,7 +11587,7 @@ $(document).ready(function() {
    $.ajax({
     method: "DELETE",
     url: "/ideas/" + ideaBox.data("idea-id")
-   }).done(function(){ ideaBox.hide("explode"); });
+   }).done(function(){ ideaBox.hide("explode").remove(); });
    
   });
 });
@@ -11643,8 +11643,8 @@ $(document).ready(function() {
   createIdeaIndex();
 });
 
-function displayIdea(idea) {
-  return $(openIdeaDiv(idea) + displayProperties(idea) + displayButtons() + '</div><br /><br />');
+function displayIdea(ideaObj) {
+  return $(openIdeaDiv(ideaObj) + displayProperties(ideaObj) + displayButtons() + '</div><br /><br />');
 };
 
 
@@ -11675,21 +11675,22 @@ function truncate(body) {
 };
 
 function chronSort(x, y) {
-  x.created_at = new Date(x.created_at);
-  y.created_at = new Date(y.created_at);
+  x.idea.created_at = new Date(x.created_at);
+  y.idea.created_at = new Date(y.created_at);
   return (y.created_at - x.created_at);
 };
 
-function openIdeaDiv(idea){
-  return '<div class="idea" data-idea-id="' + idea.id + '" ' +
-    'data-idea-title="' + idea.title + '" ' +
-    'data-idea-body="' + idea.body + '">'
+function openIdeaDiv(ideaObj){
+  return '<div class="idea" data-idea-id="' + ideaObj.idea.id + '" ' +
+    'data-idea-title="' + ideaObj.idea.title + '" ' +
+    'data-idea-body="' + ideaObj.idea.body + '">'
 };
 
-function displayProperties(idea){
-  var body = truncate(idea.body);
-  return '<h3 class="title-display">' + idea.title + '</h3><h4>Quality: ' +
-    idea.quality + '</h4><h5>'+ idea.created_at + '</h5><h5 class="body-display">' + body + '</h5>'
+function displayProperties(ideaObj){
+  var body = truncate(ideaObj.idea.body);
+  return '<h3 class="title-display">' + ideaObj.idea.title + '</h3><h4>Quality: ' +
+    ideaObj.idea.quality + '</h4><h5>'+ ideaObj.idea.created_at + '</h5><h5 class="body-display">' +
+    body + '</h5>' + '<h5>' + displayTags(ideaObj) + '</h5>'
   };
 
 function displayButtons(){
@@ -11702,12 +11703,21 @@ function displayButtons(){
   '<input class="edit-image idea-button" type="image" src="' + editImg + '">' +
   '<input class="delete-image idea-button" type="image" src="' + deleteImg + '">'
 };
+
+function displayTags(ideaObj){
+  var allTags = ""
+  $(ideaObj.tags).each(function() {
+    allTags = allTags + $(this)[0].name + ' '
+  })
+  return allTags;
+};
 $(document).ready(function() {
   $("#new-idea-submit").on("click", function() {
    var idea = {idea: { title: $("#new-title-field").val(),
-                       body: $("#new-body-field").val() }
+                       body: $("#new-body-field").val(),
+                       tags: $("#new-tags-field").val() }
    };
-
+   
    $.post("/ideas", idea).done(createIdeaIndex);
    
   });

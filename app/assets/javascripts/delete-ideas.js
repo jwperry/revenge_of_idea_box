@@ -5,7 +5,7 @@ $(document).ready(function() {
    $.ajax({
     method: "DELETE",
     url: "/ideas/" + ideaBox.data("idea-id")
-   }).done(function(){ ideaBox.hide("explode"); });
+   }).done(function(){ ideaBox.hide("explode").remove(); });
    
   });
 });

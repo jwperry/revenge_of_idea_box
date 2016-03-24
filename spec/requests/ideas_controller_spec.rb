@@ -7,21 +7,23 @@ describe "ideas" do
       get "/", format: :json
       json_ideas = JSON.parse(response.body)
       expect(response.status).to eq(200)
-      expect(json_ideas["ideas"].first["title"]).to eq(idea1.title)
-      expect(json_ideas["ideas"].first["body"]).to eq(idea1.body)
-      expect(json_ideas["ideas"].last["title"]).to eq(idea2.title)
-      expect(json_ideas["ideas"].last["body"]).to eq(idea2.body)
+      expect(json_ideas["ideas"].first["idea"]["title"]).to eq(idea1.title)
+      expect(json_ideas["ideas"].first["idea"]["body"]).to eq(idea1.body)
+      expect(json_ideas["ideas"].last["idea"]["title"]).to eq(idea2.title)
+      expect(json_ideas["ideas"].last["idea"]["body"]).to eq(idea2.body)
     end
   end
 
   describe "POST create" do
     it "creates an idea" do
-      params = {"idea"=>{"title"=>"test_title", "body"=>"test_body"}}
+      params = {"idea"=>{"title"=>"test_title", "body"=>"test_body", "tags"=>"Tag1, Tag2"}}
       expect(Idea.all.count).to eq(0)
       post "/ideas", params, format: :json
       expect(Idea.all.count).to eq(1)
       expect(Idea.all.first.title).to eq("test_title")
       expect(Idea.all.first.body).to eq("test_body")
+      expect(Idea.all.first.tags.first.name).to eq("Tag1")
+      expect(Idea.all.first.tags.last.name).to eq("Tag2")
     end
   end
 

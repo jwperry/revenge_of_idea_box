@@ -15,8 +15,8 @@ $(document).ready(function() {
 
 function showOnlyMatches(ideas, term) {
   ideas.each(function() {
-    var  body = $(this).data('idea-body').toLowerCase();
-    var  title = $(this).data('idea-title').toLowerCase();
+    var body = $(this).data('idea-body').toLowerCase();
+    var title = $(this).data('idea-title').toLowerCase();
     if (body.indexOf(term) === -1 && title.indexOf(term) === -1){
       $(this).hide();
     }
