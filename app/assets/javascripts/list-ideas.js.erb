@@ -3,22 +3,9 @@ $(document).ready(function() {
 });
 
 function displayIdea(idea) {
-  var body = truncate(idea.body);
-  var thumbsDown = "<%= asset_path('thumbs_down.png') %>";
-  var thumbsUp = "<%= asset_path('thumbs_up.png') %>";
-  var editImg = "<%= asset_path('edit.png') %>";
-  var deleteImg = "<%= asset_path('delete.png') %>";
-  return $('<div class="idea" data-idea-id="' + idea.id + '" ' +
-    'data-idea-title="' + idea.title + '" ' +
-    'data-idea-body="' + idea.body + '">' +
-    '<h4 class="title-display">' + idea.title + '</h4><h4>Quality: ' +
-    idea.quality + '</h4><h4>'+ idea.created_at + '</h4><h5 class="body-display">' + body + '</h5>' +
-    '<input class="thumbs-down-image idea-button" type="image" src="' + thumbsDown + '">' +
-    '<input class="thumbs-up-image idea-button" type="image" src="' + thumbsUp + '">' +
-    '<input class="edit-image idea-button" type="image" src="' + editImg + '">' +
-    '<input class="delete-image idea-button" type="image" src="' + deleteImg + '">' +
-    '</div><br /><br />');
+  return $(openIdeaDiv(idea) + displayProperties(idea) + displayButtons() + '</div><br /><br />');
 };
+
 
 function appendIdeas(ideas, target) {
   $(target).append(ideas.map(displayIdea));
@@ -50,4 +37,27 @@ function chronSort(x, y) {
   x.created_at = new Date(x.created_at);
   y.created_at = new Date(y.created_at);
   return (y.created_at - x.created_at);
+};
+
+function openIdeaDiv(idea){
+  return '<div class="idea" data-idea-id="' + idea.id + '" ' +
+    'data-idea-title="' + idea.title + '" ' +
+    'data-idea-body="' + idea.body + '">'
+};
+
+function displayProperties(idea){
+  var body = truncate(idea.body);
+  return '<h3 class="title-display">' + idea.title + '</h3><h4>Quality: ' +
+    idea.quality + '</h4><h5>'+ idea.created_at + '</h5><h5 class="body-display">' + body + '</h5>'
+  };
+
+function displayButtons(){
+  var thumbsDown = "<%= asset_path('thumbs_down.png') %>";
+  var thumbsUp = "<%= asset_path('thumbs_up.png') %>";
+  var editImg = "<%= asset_path('edit.png') %>";
+  var deleteImg = "<%= asset_path('delete.png') %>";
+  return '<input class="thumbs-down-image idea-button" type="image" src="' + thumbsDown + '">' +
+  '<input class="thumbs-up-image idea-button" type="image" src="' + thumbsUp + '">' +
+  '<input class="edit-image idea-button" type="image" src="' + editImg + '">' +
+  '<input class="delete-image idea-button" type="image" src="' + deleteImg + '">'
 };
