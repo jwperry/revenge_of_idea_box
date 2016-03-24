@@ -1,25 +1,24 @@
-<h1>Idea Box</h1><br />
+<h1 class="home-title">Idea Box</h1><br />
 
-<h4>New Idea</h4>
+<span class="labels-md">New Idea</span>
 <form>
-  Title:<br />
+  <span class="labels">Title:</span><br />
   <input type="text" id="new-title-field" name="new-title" /><br />
-  Body:<br />
+  <span class="labels">Body:</span><br />
   <input type="text" id="new-body-field" name="new-body" /><br />
-  Tags:<br />
-  <input type="text" id="new-tags-field" name="new-tags" /><br />
+  <span class="labels">Tags:</span><br />
+  <input type="text" id="new-tags-field" name="new-tags" /><br /><br />
   <input type="submit" id="new-idea-submit" value="Submit" /><br />
-</form>
-<br />
+</form><br /><br />
 
-<h4>Search</h4>
-<input type="text" id="search-field"><br /><br />
+<span class="labels-md">Search</span><br />
+<input type="text" id="search-field"><br /><br /><br />
 
-<h2>All Ideas</h2><br />
-  <button type="button" class="clear-tags">Clear Tags</button><br />
-<h5 class="tags">
+<span class="labels-lg">All Ideas</span><br /><br />
+<div class="tags">
   <% @tags.each do |tag| %>
-    <span class="tag"><%=tag.name%></span>
+    <span class="tag"><%=tag.name%></span><span class="tag-separator"> | </span>
   <% end %>
-</h5><br />
+</div><br />
+<button type="button" class="clear-tags">Clear Tags</button><br /><br />
 <div class="ideas"></div>
