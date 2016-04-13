@@ -1,8 +1,9 @@
 $(document).ready(function() {
   $('.ideas').on("click", ".edit-image", function() {
-    hideButtons($(this).parent());
-    showEditForms($(this).parent());
-    showEditButtons($(this).parent());
+    var $ideas = $(this);
+    hideButtons($ideas.parent());
+    showEditForms($ideas.parent());
+    showEditButtons($ideas.parent());
   });
 });
 
