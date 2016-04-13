@@ -14,3 +14,6 @@
 
 # Ignore application configuration
 /config/application.yml
+/coverage/resultset.json
+/coverage/index.html
+/npm-debug.log
